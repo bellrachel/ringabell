@@ -1,0 +1,17 @@
+title: Performance & scalability
+role: 4cast-pm
+summary: Worked with Engineering and DevOps to fix database bottlenecks, add caching, and set up automated slowdown alerts.
+facts:
+  - id: load-time
+    value: "4.5s → <1.2s"
+    label: dashboard load
+    detail: Reduced average dashboard loading time from 4.5s to under 1.2s.
+  - id: uptime
+    value: "99.7%"
+    label: uptime
+    detail: Maintained 99.7% uptime with zero crashes during high-traffic events.
+  - id: concurrency
+    value: "3x"
+    label: concurrent users
+    detail: Allowed the platform to handle 3x more active users at the same time.
+tags: [performance, reliability]

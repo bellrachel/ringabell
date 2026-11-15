@@ -1,0 +1,36 @@
+---
+import { getEntry } from 'astro:content';
+import ModeText from './ModeText.astro';
+import ContactForm from './ContactForm.astro';
+import CalendlyEmbed from './CalendlyEmbed.astro';
+
+const section = (await getEntry('sections', 'contact'))!.data;
+---
+
+<section id="contact" class="section contact" aria-labelledby="contact-heading">
+  <div class="wrap">
+    <h2 id="contact-heading" class="display"><ModeText value={section.heading} /></h2>
+    <div class="contact-row">
+      <ContactForm />
+      <CalendlyEmbed />
+    </div>
+  </div>
+</section>
+
+<style>
+  h2 {
+    margin: 0 0 24px;
+    font-size: 56px;
+    line-height: 1;
+  }
+  .contact-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+  }
+  @media (max-width: 999px) {
+    h2 {
+      font-size: 40px;
+    }
+  }
+</style>

@@ -1,0 +1,10 @@
+order: 3
+title:
+  pro: Onboarding in minutes, not days
+  fire: Setup used to take 3 days. Now it's a coffee break.
+text:
+  pro: Redesigned self-serve onboarding with in-app guides, so users see value on day one.
+  fire: Self-serve onboarding with in-app guides. Support finally got some quiet.
+chips:
+  - onboarding/setup
+  - onboarding/tickets

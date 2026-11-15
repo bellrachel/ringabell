@@ -1,0 +1,123 @@
+---
+import '@fontsource-variable/bricolage-grotesque/opsz.css';
+import '@fontsource-variable/inter/wght.css';
+import '@fontsource/ibm-plex-mono/latin-500.css';
+import '../styles/tokens.css';
+import '../styles/base.css';
+import '../styles/motion.css';
+
+import { getCollection, getEntry } from 'astro:content';
+import EnergyPopup from '../components/EnergyPopup.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  /** Keep utility pages (thanks, 404) out of search results. */
+  noindex?: boolean;
+  /** Show the energy.exe pop-up (home page only). */
+  popup?: boolean;
+}
+
+const site = (await getEntry('site', 'site'))!.data;
+const { title = site.meta.title, description = site.meta.description, noindex = false, popup = false } = Astro.props;
+
+const origin = Astro.site!;
+const canonical = new URL(Astro.url.pathname, origin).href;
+const image = new URL('/images/og.jpg', origin).href;
+const roles = await getCollection('roles');
+const current = roles.find((role) => role.data.end === null);
+const plausibleDomain = import.meta.env.PUBLIC_PLAUSIBLE_DOMAIN;
+
+// Structured data, so search engines and AI agents get the facts directly.
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Person',
+      '@id': `${origin.href}#person`,
+      name: site.name,
+      jobTitle: site.jobTitle,
+      description: site.meta.description,
+      url: origin.href,
+      image: new URL('/images/helly-pro.jpg', origin).href,
+      sameAs: [site.linkedin],
+      knowsAbout: site.knowsAbout,
+      ...(current && { worksFor: { '@type': 'Organization', name: current.data.company } }),
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${origin.href}#website`,
+      url: origin.href,
+      name: site.name,
+      inLanguage: 'en',
+      about: { '@id': `${origin.href}#person` },
+    },
+  ],
+};
+---
+
+<!doctype html>
+<html lang="en" data-mode="pro">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content={site.name} />
+    {noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonical} />}
+
+    <meta property="og:type" content="profile" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={image} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={site.photoAlt.pro} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="alternate" type="text/plain" href="/llms.txt" title="Plain-text summary for AI agents" />
+
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)} />
+
+    <!-- Sets the mode before first paint: URL param, then saved choice, then Pro. -->
+    <script is:inline>
+      (function () {
+        var root = document.documentElement;
+        var ok = function (m) {
+          return m === 'pro' || m === 'fire';
+        };
+        var mode = null;
+        root.classList.add('js');
+        try {
+          var param = new URLSearchParams(location.search).get('mode');
+          if (ok(param)) mode = param;
+          else {
+            var saved = localStorage.getItem('rab-mode');
+            if (ok(saved)) mode = saved;
+          }
+        } catch (e) {}
+        root.dataset.mode = mode || 'pro';
+      })();
+    </script>
+
+    {
+      plausibleDomain && (
+        <script is:inline defer data-domain={plausibleDomain} src="https://plausible.io/js/script.tagged-events.js" />
+      )
+    }
+  </head>
+  <body>
+    <slot />
+    {popup && <EnergyPopup />}
+    <script>
+      import '../scripts/mode.ts';
+      import '../scripts/energy.ts';
+      import '../scripts/calendly.ts';
+      import '../scripts/form.ts';
+    </script>
+  </body>
+</html>

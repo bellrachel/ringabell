@@ -1,0 +1,18 @@
+title: Enterprise learning & readiness platforms
+role: 4cast-pm
+specializations: [edtech, workforce]
+summary: Managed enterprise learning and readiness platforms, and redesigned the registration pipeline to automate user access.
+facts:
+  - id: mau
+    value: "3,000+"
+    label: monthly active users
+    detail: Supported 3,000+ monthly active users across on-prem and cloud setups.
+  - id: provisioning
+    value: "−25%"
+    label: provisioning time
+    detail: Cut enterprise user provisioning time by 25%.
+  - id: compliance
+    value: "100%"
+    label: role-based access compliance
+    detail: Maintained 100% role-based access compliance across audit cycles.
+tags: [enterprise-saas, provisioning, access-control]

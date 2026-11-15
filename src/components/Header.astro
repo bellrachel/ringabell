@@ -1,0 +1,45 @@
+---
+import { getEntry } from 'astro:content';
+import ModeText from './ModeText.astro';
+import ModeToggle from './ModeToggle.astro';
+
+interface Props {
+  /** Prefix for nav links, e.g. "/" on pages other than the home page. */
+  base?: string;
+}
+const { base = '' } = Astro.props;
+const site = (await getEntry('site', 'site'))!.data;
+---
+
+<header class="top mono">
+  <a class="name" href="/"><ModeText value={site.nameTag} /></a>
+  <nav aria-label="Main">
+    {site.nav.map((item) => <a href={`${base}${item.href}`}><ModeText value={item.label} /></a>)}
+  </nav>
+  <ModeToggle />
+</header>
+
+<style>
+  .top {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 24px var(--gutter);
+    max-width: var(--wrap);
+    margin: 0 auto;
+  }
+  nav {
+    display: flex;
+    gap: 20px;
+  }
+  a {
+    color: var(--ink);
+    text-decoration: none;
+    padding: 8px 0;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+</style>

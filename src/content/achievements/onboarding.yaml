@@ -1,0 +1,17 @@
+title: Onboarding & self-serve adoption
+role: 4cast-pm
+specializations: [edtech]
+summary: Redesigned onboarding with clear self-serve steps, in-app guides, and help articles, so users see value on day one.
+facts:
+  - id: tickets
+    value: "−35%"
+    label: tickets
+    detail: Cut platform support tickets by 35%.
+  - id: adoption
+    value: "+35%"
+    label: system adoption
+    detail: Drove a 35% increase in system adoption and self-service.
+  - id: setup
+    value: "3 days → <15 min"
+    detail: Cut time to complete initial setup from 3 days to under 15 minutes.
+tags: [onboarding, self-serve, digital-adoption]

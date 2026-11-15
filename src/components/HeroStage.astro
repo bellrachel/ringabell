@@ -1,0 +1,214 @@
+---
+import { getEntry } from 'astro:content';
+import ModeText from './ModeText.astro';
+import Bell from './objects/Bell.astro';
+import Star from './objects/Star.astro';
+import Ring from './objects/Ring.astro';
+import Cup from './objects/Cup.astro';
+
+const site = (await getEntry('site', 'site'))!.data;
+const hero = (await getEntry('sections', 'hero'))!.data;
+const photos = [
+  { mode: 'pro', alt: site.photoAlt.pro, lazy: false },
+  { mode: 'fire', alt: site.photoAlt.fire, lazy: true },
+] as const;
+---
+
+<section class="stage-box" aria-label="Intro">
+  <div class="stage">
+    <p class="wordmark display" aria-hidden="true">{site.wordmark}</p>
+
+    <div class="obj obj--bell"><Bell /></div>
+    <div class="obj obj--star"><Star /></div>
+    <div class="obj obj--ring"><Ring /></div>
+
+    <div class="obj obj--photo">
+      {
+        photos.map((p) => (
+          <picture data-show={p.mode}>
+            <source srcset={`/images/helly-${p.mode}-480.webp`} type="image/webp" />
+            <img
+              src={`/images/helly-${p.mode}-480.jpg`}
+              alt={p.alt}
+              width="480"
+              height="721"
+              loading={p.lazy ? 'lazy' : 'eager'}
+              decoding="async"
+            />
+          </picture>
+        ))
+      }
+    </div>
+
+    <div class="obj obj--extra obj--star2"><Star variant="orange" /></div>
+    <div class="obj obj--extra obj--cup"><Cup /></div>
+
+    <div class="hero-copy">
+      <h1 class="display"><ModeText value={hero.heading} /></h1>
+      <p><ModeText value={hero.body} /></p>
+      <a class="cta" href="#contact"><ModeText value={hero.cta} /></a>
+      <span class="mono caption"><ModeText value={hero.caption} /></span>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* The stage is drawn on a 1280px canvas. `--u` is one canvas pixel, and it
+     shrinks with the container so positions and objects scale together. */
+  .stage-box {
+    container-type: inline-size;
+    max-width: var(--stage-max);
+    margin: 0 auto;
+  }
+  .stage {
+    --u: min(1px, 0.078125cqw);
+    position: relative;
+    min-height: calc(660 * var(--u));
+    padding: calc(360 * var(--u)) 0 40px;
+  }
+  .wordmark {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: calc(150 * var(--u));
+    margin: 0;
+    text-align: center;
+    font-size: calc(200 * var(--u));
+    line-height: 1;
+    letter-spacing: -0.04em;
+    white-space: nowrap;
+    color: var(--word-fill);
+    -webkit-text-stroke: 2px var(--word-stroke);
+  }
+
+  .obj {
+    position: absolute;
+  }
+  .obj :global(svg) {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  .obj--bell {
+    left: calc(90 * var(--u));
+    top: calc(20 * var(--u));
+    width: calc(190 * var(--u));
+    height: calc(200 * var(--u));
+    --r: -12deg;
+  }
+  .obj--bell :global(.bell-swing) {
+    width: 100%;
+    height: 100%;
+  }
+  .obj--star {
+    right: calc(110 * var(--u));
+    top: calc(30 * var(--u));
+    width: calc(150 * var(--u));
+    height: calc(150 * var(--u));
+    --r: 8deg;
+  }
+  .obj--ring {
+    right: calc(150 * var(--u));
+    top: calc(400 * var(--u));
+    width: calc(150 * var(--u));
+    height: calc(150 * var(--u));
+  }
+  .obj--photo {
+    left: calc(130 * var(--u));
+    top: calc(390 * var(--u));
+    --r: -6deg;
+  }
+  .obj--photo img {
+    display: block;
+    width: calc(170 * var(--u));
+    height: calc(210 * var(--u));
+    object-fit: cover;
+    object-position: center 25%;
+    border-radius: calc(90 * var(--u)) calc(90 * var(--u)) calc(24 * var(--u)) calc(24 * var(--u));
+    border: 6px solid var(--white);
+  }
+  .obj--extra {
+    display: none;
+  }
+  :global(html[data-mode='fire']) .obj--extra {
+    display: block;
+  }
+  .obj--star2 {
+    left: 47%;
+    top: calc(20 * var(--u));
+    width: calc(90 * var(--u));
+    height: calc(90 * var(--u));
+    --r: 20deg;
+  }
+  .obj--cup {
+    /* Anchored to the bottom and kept clear of the CTA when the copy wraps. */
+    left: min(30%, calc(50% - 240px));
+    bottom: calc(50 * var(--u));
+    width: calc(110 * var(--u));
+    height: calc(110 * var(--u));
+    --r: -10deg;
+  }
+
+  .hero-copy {
+    position: relative;
+    width: min(540px, 46cqw);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    text-align: center;
+  }
+  h1 {
+    margin: 0;
+    font-size: 34px;
+    line-height: 1.15;
+  }
+  .hero-copy p {
+    margin: 0;
+    font-size: 17px;
+    line-height: 1.6;
+  }
+  .caption {
+    font-size: 12px;
+  }
+
+  /* Phones and small tablets: the stage stacks. */
+  @media (max-width: 999px) {
+    .stage {
+      min-height: 0;
+      padding: 24px 16px 48px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+    }
+    .wordmark {
+      position: static;
+      font-size: clamp(64px, 13vw, 110px);
+      white-space: normal;
+    }
+    .obj {
+      position: static;
+      transform: none;
+    }
+    .obj--bell {
+      width: 110px;
+      height: 116px;
+    }
+    .obj--star,
+    .obj--ring,
+    .obj--extra {
+      display: none !important;
+    }
+    .obj--photo img {
+      width: 170px;
+      height: 210px;
+      border-radius: 90px 90px 24px 24px;
+    }
+    .hero-copy {
+      width: auto;
+      max-width: 540px;
+    }
+  }
+</style>

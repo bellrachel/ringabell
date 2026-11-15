@@ -1,0 +1,10 @@
+order: 1
+title:
+  pro: Workforce intelligence, built from zero to one
+  fire: I saw the staffing crisis coming. Six months early.
+text:
+  pro: A Skills Analysis module that lets managers spot staffing gaps months before they become a crisis.
+  fire: Built a skills module from scratch, so managers stop finding out who's retiring at the farewell party.
+chips:
+  - skills-analysis/adoption
+  - skills-analysis/reporting-time

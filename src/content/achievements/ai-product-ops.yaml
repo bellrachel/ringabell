@@ -1,0 +1,17 @@
+title: AI-native product operations
+role: 4cast-pm
+summary: Built lightweight AI agents and automated workflows that draft PRDs, user stories, and release notes from task boards.
+facts:
+  - id: doc-time
+    value: "−50%"
+    label: doc time
+    detail: Reduced time spent writing PRDs and release notes by 50%.
+  - id: grooming
+    value: "−40%"
+    label: grooming prep
+    detail: Cut backlog grooming and story-drafting prep time by 40%.
+  - id: weekly-use
+    value: "100%"
+    label: weekly use
+    detail: Reached 100% weekly active use across the core product team.
+tags: [ai, product-ops, automation]

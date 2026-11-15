@@ -1,0 +1,14 @@
+---
+import { getEntry } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Notice from '../components/Notice.astro';
+import { pick } from '../lib/text';
+
+const copy = (await getEntry('microcopy', 'microcopy'))!.data;
+---
+
+<Base title={pick(copy.thanks.heading)} noindex>
+  <Header base="/" />
+  <Notice heading={copy.thanks.heading} body={copy.form.success} cta={copy.thanks.cta} />
+</Base>

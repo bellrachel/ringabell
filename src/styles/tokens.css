@@ -1,0 +1,59 @@
+/* Design tokens. Source: the Direction D design spec. Do not add colors here
+   without the owner's approval. */
+
+:root {
+  /* color */
+  --ink: #191923; /* all body text, both modes */
+  --brand: #b01da3;
+  --link: #0e79b2;
+  --white: #ffffff;
+  --bg: #fbfef9;
+  --chip: #f4eded;
+  --yellow: #f9db6d; /* backgrounds and highlights only, never text */
+  --teal: #36827f; /* objects only */
+  --orange: #f39237; /* objects only */
+  --word-fill: transparent;
+  --word-stroke: #cfcfd4;
+  --cta-bg: var(--brand);
+  --cta-ink: #fbfef9;
+  --toggle-active: var(--ink);
+  --popup-bg: #ececec;
+  --popup-btn: #f4f4f6;
+
+  /* type */
+  --font-display: 'Bricolage Grotesque Variable', system-ui, sans-serif;
+  --font-body: 'Inter Variable', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+  /* shape and depth: hard edges only, no blurred shadows */
+  --radius-card: 20px;
+  --radius-field: 10px;
+  --radius-pill: 999px;
+  --border-card: 1.5px solid var(--ink);
+  --border-cta: 2px solid var(--ink);
+  --shadow-hard: 5px 5px 0 var(--ink);
+  --shadow-hard-hover: 3px 3px 0 var(--ink);
+
+  /* layout */
+  --wrap: 1200px;
+  --gutter: 40px;
+  --stage-max: 1280px;
+}
+
+html[data-mode='fire'] {
+  --bg: #f4eded;
+  --chip: #f9db6d;
+  /* #0e79b2 is only 4.1:1 on the On Fire background; brand is 5.1:1 */
+  --link: var(--brand);
+  --word-fill: var(--brand);
+  --word-stroke: var(--brand);
+  --cta-bg: var(--yellow);
+  --cta-ink: var(--ink);
+  --toggle-active: var(--brand);
+}
+
+@media (max-width: 999px) {
+  :root {
+    --gutter: 16px;
+  }
+}

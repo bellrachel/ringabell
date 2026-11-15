@@ -1,0 +1,30 @@
+name: Helly Rachel Bell
+jobTitle: Senior Product Manager
+nameTag: HELLY RACHEL BELL · SENIOR PM
+wordmark: RING A BELL
+meta:
+  title: Helly Rachel Bell · Senior Product Manager for EdTech and Workforce Management
+  description: Senior Product Manager specializing in EdTech and Workforce Management. I turn complex learning and workforce processes into products people actually use, and I build with AI along the way.
+knowsAbout:
+  - Product Management
+  - EdTech
+  - Workforce Management
+  - Digital learning
+  - AI agents and RAG
+  - Product operations
+linkedin: https://www.linkedin.com/in/helly-rachel-bell
+calendlyUrl: https://calendly.com/b-rachelbell/30min
+nav:
+  - label: WORK
+    href: "#work"
+  - label: OFFER
+    href: "#offer"
+  - label: CONTACT
+    href: "#contact"
+toggle:
+  groupLabel: Energy mode
+  pro: PRO
+  fire: ON FIRE
+photoAlt:
+  pro: Helly Rachel Bell smiling, portrait
+  fire: Helly Rachel Bell laughing, portrait

@@ -1,0 +1,17 @@
+title: Internal GenAI & RAG solution
+role: 4cast-pm
+summary: Led the rollout of an internal offline AI assistant so teams can query isolated company data and get verified answers without waiting on experts.
+facts:
+  - id: latency
+    value: "<3s"
+    label: per query
+    detail: Kept response times under 3 seconds per query.
+  - id: accuracy
+    value: "4.8/5"
+    label: accuracy
+    detail: Scored 4.8/5 on answer accuracy and relevance.
+  - id: expert-questions
+    value: "−60%"
+    label: routine questions to experts
+    detail: Cut routine informational questions to experts by 60%.
+tags: [ai, rag, knowledge-retrieval]

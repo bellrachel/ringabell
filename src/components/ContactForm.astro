@@ -1,0 +1,78 @@
+---
+// Netlify Forms. The notification address is configured in the Netlify
+// dashboard only; it must never appear in this repo or in the page source.
+import { getEntry } from 'astro:content';
+import ModeText from './ModeText.astro';
+import { pick } from '../lib/text';
+
+const copy = (await getEntry('microcopy', 'microcopy'))!.data.form;
+---
+
+<form name="contact" method="POST" action="/thanks/" data-netlify="true" netlify-honeypot="bot-field" data-contact-form>
+  <input type="hidden" name="form-name" value="contact" />
+  <p hidden>
+    <label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
+  </p>
+  <label>
+    <ModeText value={copy.name} />
+    <input name="name" type="text" autocomplete="name" placeholder={pick(copy.namePlaceholder)} required />
+  </label>
+  <label>
+    <ModeText value={copy.email} />
+    <input name="email" type="email" autocomplete="email" placeholder={pick(copy.emailPlaceholder)} required />
+  </label>
+  <label>
+    <ModeText value={copy.topic} />
+    <select name="topic">
+      {copy.topics.map((topic) => <option>{topic}</option>)}
+    </select>
+  </label>
+  <label>
+    <ModeText value={copy.message} />
+    <textarea name="message" rows="4" placeholder={pick(copy.messagePlaceholder)}></textarea>
+  </label>
+  <button class="cta" type="submit"><ModeText value={copy.submit} /></button>
+  <p class="status" role="status" data-form-success hidden><ModeText value={copy.success} /></p>
+  <p class="status" role="alert" data-form-error hidden><ModeText value={copy.error} /></p>
+</form>
+
+<style>
+  form {
+    flex: 1 1 420px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  label {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  input,
+  select,
+  textarea {
+    font: 400 16px var(--font-body);
+    color: var(--ink);
+    background: var(--white);
+    border: 1.5px solid var(--ink);
+    border-radius: var(--radius-field);
+    padding: 12px;
+    width: 100%;
+  }
+  .cta {
+    align-self: flex-start;
+  }
+  .status {
+    margin: 0;
+    padding: 12px;
+    border: 1.5px solid var(--ink);
+    border-radius: var(--radius-field);
+    background: var(--white);
+    font-weight: 500;
+  }
+  .status[hidden] {
+    display: none;
+  }
+</style>

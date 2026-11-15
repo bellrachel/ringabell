@@ -1,0 +1,21 @@
+---
+// Renders copy for both modes. CSS on <html data-mode> shows the right one,
+// so the Pro voice reads without JavaScript.
+import { format, type Variant } from '../lib/text';
+
+interface Props {
+  value: Variant | undefined;
+}
+const { value } = Astro.props;
+---
+
+{
+  value === undefined ? null : typeof value === 'string' ? (
+    <Fragment set:html={format(value)} />
+  ) : (
+    <>
+      <span data-show="pro" set:html={format(value.pro)} />
+      <span data-show="fire" data-nosnippet set:html={format(value.fire)} />
+    </>
+  )
+}

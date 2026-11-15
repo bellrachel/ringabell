@@ -1,0 +1,22 @@
+---
+interface Props {
+  variant?: 'yellow' | 'orange';
+}
+const { variant = 'yellow' } = Astro.props;
+const path = 'M50 0C54 34 66 46 100 50 66 54 54 66 50 100 46 66 34 54 0 50 34 46 46 34 50 0z';
+---
+
+<svg viewBox="0 0 100 100" aria-hidden="true">
+  {
+    variant === 'yellow' && (
+      <defs>
+        <linearGradient id="starG" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#fff4c2" />
+          <stop offset=".5" stop-color="#f9db6d" />
+          <stop offset="1" stop-color="#d9a92a" />
+        </linearGradient>
+      </defs>
+    )
+  }
+  <path d={path} fill={variant === 'yellow' ? 'url(#starG)' : '#f39237'}></path>
+</svg>

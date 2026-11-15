@@ -1,0 +1,17 @@
+title: Release quality & agile execution
+role: 4cast-pm
+summary: Cleaned up sprint routines and introduced clear pre-release checklists, so Dev, QA, and Design agree on requirements early.
+facts:
+  - id: bugs
+    value: "−40%"
+    label: production bugs on new launches
+    detail: Reduced production bugs on new feature launches by 40%.
+  - id: predictability
+    value: "65% → 90%"
+    label: sprint predictability
+    detail: Increased sprint delivery predictability from 65% to 90%.
+  - id: cycle-time
+    value: "−25%"
+    label: QA-to-production cycle
+    detail: Shortened QA-to-production deployment cycles by 25%.
+tags: [agile, release-quality]

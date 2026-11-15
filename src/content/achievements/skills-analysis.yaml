@@ -1,0 +1,18 @@
+title: Skills Analysis module (zero-to-one)
+role: 4cast-pm
+specializations: [workforce]
+summary: Built a Skills Analysis module from scratch that tracks employee readiness, compares team members, and flags staffing gaps early.
+facts:
+  - id: reporting-time
+    value: "−70%"
+    label: reporting time
+    detail: Cut skills audit and workforce reporting time by 70%.
+  - id: early-warning
+    value: "6 months"
+    label: ahead on staffing gaps
+    detail: Flagged single-point-of-failure staffing gaps 6 months ahead of time.
+  - id: adoption
+    value: "85%"
+    label: manager adoption
+    detail: Achieved an 85% adoption rate among department heads and managers.
+tags: [zero-to-one, workforce-intelligence, succession-planning]

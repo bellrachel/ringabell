@@ -1,0 +1,64 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+import ModeText from './ModeText.astro';
+
+const section = (await getEntry('sections', 'offer'))!.data;
+const offers = (await getCollection('offers')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<section id="offer" class="section" aria-labelledby="offer-label">
+  <div class="wrap">
+    <h2 id="offer-label" class="label mono"><ModeText value={section.label} /></h2>
+    <div class="offer">
+      {
+        offers.map((offer) => (
+          <div>
+            <h3 class="display"><ModeText value={offer.data.title} /></h3>
+            <p><ModeText value={offer.data.text} /></p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .offer {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .offer > div {
+    padding: 0 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-left: 1px solid var(--ink);
+  }
+  .offer > div:first-child {
+    padding-left: 0;
+    border-left: 0;
+  }
+  h3 {
+    margin: 0;
+    font-size: 24px;
+  }
+  p {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  @media (max-width: 999px) {
+    .offer {
+      grid-template-columns: 1fr;
+    }
+    .offer > div {
+      padding: 16px 0;
+      border-left: 0;
+      border-top: 1px solid var(--ink);
+    }
+    .offer > div:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+  }
+</style>

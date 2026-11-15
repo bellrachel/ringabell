@@ -1,0 +1,6 @@
+# Everyone is welcome, including AI crawlers and agents.
+# A plain-text summary for language models lives at /llms.txt
+User-agent: *
+Allow: /
+
+Sitemap: https://ringabell.co.il/sitemap-index.xml

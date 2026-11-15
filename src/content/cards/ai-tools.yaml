@@ -1,0 +1,11 @@
+order: 2
+title:
+  pro: AI tools teams actually use
+  fire: AI people use without a mandatory training
+text:
+  pro: An internal RAG assistant for isolated company data, and AI agents that draft PRDs, stories, and release notes.
+  fire: A RAG assistant that answers before you finish your coffee, and agents that write the PRD you were avoiding.
+chips:
+  - ai-product-ops/weekly-use
+  - rag-assistant/accuracy
+  - ai-product-ops/doc-time

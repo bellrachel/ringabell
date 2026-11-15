@@ -1,0 +1,54 @@
+---
+import { getEntry } from 'astro:content';
+const site = (await getEntry('site', 'site'))!.data;
+---
+
+<div class="toggle" role="group" aria-label={site.toggle.groupLabel}>
+  <svg
+    width="18"
+    height="18"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    aria-hidden="true"
+  >
+    <path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12"></path>
+    <circle cx="16" cy="6" r="2"></circle>
+    <circle cx="10" cy="12" r="2"></circle>
+    <circle cx="18" cy="18" r="2"></circle>
+  </svg>
+  <button type="button" data-set-mode="pro" data-source="header" aria-pressed="true">{site.toggle.pro}</button>
+  <button type="button" data-set-mode="fire" data-source="header" aria-pressed="false">{site.toggle.fire}</button>
+</div>
+
+<style>
+  .toggle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 6px 6px 14px;
+    border-radius: var(--radius-pill);
+    background: var(--white);
+    border: 1px solid var(--ink);
+  }
+  /* The toggle needs JavaScript; without it the page stays in Pro. */
+  :global(html:not(.js)) .toggle {
+    display: none;
+  }
+  button {
+    border: 0;
+    cursor: pointer;
+    min-height: 40px;
+    padding: 0 16px;
+    border-radius: var(--radius-pill);
+    font: 500 13px var(--font-mono);
+    background: transparent;
+    color: var(--ink);
+  }
+  button[aria-pressed='true'] {
+    background: var(--toggle-active);
+    color: #fbfef9;
+  }
+</style>

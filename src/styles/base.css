@@ -1,0 +1,104 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  overflow-x: clip;
+}
+
+a {
+  color: var(--link);
+}
+a:hover {
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 3px;
+}
+
+.wrap {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+}
+
+.display {
+  font-family: var(--font-display);
+  font-weight: 800;
+}
+
+.mark {
+  background: var(--yellow);
+  color: var(--ink);
+  padding: 0 6px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Copy per mode. Pro is visible by default, so content reads without JS. */
+[data-show='fire'] {
+  display: none;
+}
+html[data-mode='fire'] [data-show='pro'] {
+  display: none;
+}
+html[data-mode='fire'] [data-show='fire'] {
+  display: revert;
+}
+
+/* Heavy CTA with a hard offset shadow */
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 52px;
+  padding: 0 26px;
+  background: var(--cta-bg);
+  color: var(--cta-ink);
+  border: var(--border-cta);
+  border-radius: 0;
+  box-shadow: var(--shadow-hard);
+  font: 800 17px var(--font-display);
+  text-decoration: none;
+  cursor: pointer;
+}
+.cta:hover {
+  transform: translate(2px, 2px);
+  box-shadow: var(--shadow-hard-hover);
+  color: var(--cta-ink);
+}
+
+/* Sections */
+.section {
+  border-top: 1px solid var(--ink);
+  padding: 40px 0 80px;
+}
+.section .label {
+  margin: 0 0 28px;
+}

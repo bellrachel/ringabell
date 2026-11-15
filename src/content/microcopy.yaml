@@ -1,0 +1,60 @@
+popup:
+  title: energy.exe
+  close: Close
+  body:
+    pro: You've read 75% of the Pro version. Want the one with more energy?
+    fire: On Fire mode active. Facts unchanged. Sarcasm enabled.
+  stay:
+    pro: Stay Pro
+    fire: Back to Pro
+  switch:
+    pro: On Fire
+    fire: Keep burning
+
+form:
+  name: Name
+  namePlaceholder: Dana Levi
+  email: Email
+  emailPlaceholder: dana@company.com
+  topic: What's this about?
+  topics:
+    - Hiring a Senior PM
+    - Fractional PM
+    - AI training
+    - Just saying hi
+  message: Message
+  messagePlaceholder: Tell me about the messy process.
+  submit: Send →
+  # Draft copy: not in the design prototype, edit freely.
+  success:
+    pro: Thanks. Your message is on its way, and I'll reply soon.
+    fire: Bell rung. I heard it. Reply incoming.
+  error:
+    pro: Something went wrong. Please try again, or book a call instead.
+    fire: The bell didn't ring. Try again, or grab a slot on my calendar.
+
+calendly:
+  placeholder: CALENDLY · 30 MIN
+  fallback: Open booking page
+  frameTitle: Book a 30 minute call with Helly Rachel Bell
+
+# Draft copy: edit freely.
+notFound:
+  heading:
+    pro: Page not found.
+    fire: This page burned out.
+  body:
+    pro: The page you're looking for isn't here.
+    fire: Back to the facts?
+  cta: Back to the home page →
+
+thanks:
+  heading:
+    pro: Message sent.
+    fire: Ring received.
+  cta: Back to the home page →
+
+# First-visit hint near the toggle. Off in v1: the energy.exe pop-up is the nudge.
+hint:
+  enabled: false
+  text: Same facts. More fire. Try it →

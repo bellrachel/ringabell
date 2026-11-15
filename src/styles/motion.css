@@ -1,0 +1,77 @@
+/* Motion lives here. Objects move in On Fire only, and nothing moves when the
+   visitor prefers reduced motion. Colors and copy still switch. */
+
+@keyframes bob {
+  0%,
+  100% {
+    transform: translateY(0) rotate(var(--r, 0deg));
+  }
+  50% {
+    transform: translateY(-18px) rotate(calc(var(--r, 0deg) + 6deg));
+  }
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes swing {
+  0%,
+  100% {
+    transform: rotate(-14deg);
+  }
+  50% {
+    transform: rotate(14deg);
+  }
+}
+@keyframes pop {
+  from {
+    transform: translateY(24px);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  body {
+    transition: background 0.3s;
+  }
+  .wordmark {
+    transition: color 0.4s;
+  }
+  .energy {
+    animation: pop 0.3s ease-out;
+  }
+
+  html[data-mode='fire'] .obj--bell,
+  html[data-mode='fire'] .obj--cup {
+    animation: bob 5s ease-in-out infinite;
+  }
+  html[data-mode='fire'] .obj--star,
+  html[data-mode='fire'] .obj--photo,
+  html[data-mode='fire'] .obj--star2 {
+    animation: bob 6.5s ease-in-out infinite reverse;
+  }
+  html[data-mode='fire'] .obj--ring svg {
+    animation: spin 14s linear infinite;
+  }
+  html[data-mode='fire'] .bell-swing {
+    animation: swing 1.6s ease-in-out infinite;
+    transform-origin: 50% 8%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
