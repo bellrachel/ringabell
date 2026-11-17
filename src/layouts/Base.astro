@@ -27,7 +27,10 @@ const image = new URL('/images/og.jpg', origin).href;
 const roles = await getCollection('roles');
 const current = roles.find((role) => role.data.end === null);
 // Analytics (Umami) load only when the website ID is set in the Netlify env.
-const umamiWebsiteId = import.meta.env.PUBLIC_UMAMI_WEBSITE_ID;
+// Accepts the bare ID or a pasted snippet, and keeps only the UUID.
+const umamiWebsiteId = String(import.meta.env.PUBLIC_UMAMI_WEBSITE_ID ?? '').match(
+  /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i,
+)?.[0];
 const analyticsDomains = [origin.hostname, `www.${origin.hostname}`].join(',');
 
 // Structured data, so search engines and AI agents get the facts directly.
