@@ -21,6 +21,7 @@ form:
     - Hiring a Senior PM
     - Fractional PM
     - AI training
+    - Early access
     - Just saying hi
   message: Message
   messagePlaceholder: Tell me about the messy process.
@@ -36,7 +37,7 @@ form:
 calendly:
   placeholder: CALENDLY · 30 MIN
   fallback: Open booking page
-  frameTitle: Book a 30 minute call with Helly Rachel Bell
+  frameTitle: Book a 30 minute call with Rachel Bell
 
 # Draft copy: edit freely.
 notFound:

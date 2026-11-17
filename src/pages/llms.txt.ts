@@ -13,6 +13,8 @@ const month = (value: string | null) =>
 export const GET: APIRoute = async ({ site: origin }) => {
   const site = (await getEntry('site', 'site'))!.data;
   const hero = (await getEntry('sections', 'hero'))!.data;
+  const about = (await getEntry('sections', 'about'))!.data;
+  const lab = (await getCollection('lab')).sort((a, b) => a.data.order - b.data.order);
   const offers = (await getCollection('offers')).sort((a, b) => a.data.order - b.data.order);
   const roles = (await getCollection('roles')).sort((a, b) => b.data.start.localeCompare(a.data.start));
   const achievements = await getCollection('achievements');
@@ -23,8 +25,9 @@ export const GET: APIRoute = async ({ site: origin }) => {
     '',
     `> ${site.meta.description}`,
     '',
-    `${site.jobTitle}. ${plain(pick(hero.body))}`,
+    `${site.jobTitle}. ${plain(pick(hero.heading))} ${plain(pick(hero.body))}`,
     '',
+    ...(about.enabled && about.paragraphs ? ['## About', '', ...about.paragraphs.pro.flatMap((p) => [plain(p), ''])] : []),
     'This site has two modes with identical facts: Pro (default) and On Fire (same facts, more playful wording).',
     'This file uses the Pro wording.',
     '',
@@ -46,6 +49,10 @@ export const GET: APIRoute = async ({ site: origin }) => {
         '',
       ];
     }),
+    '## In the lab (in progress)',
+    '',
+    ...lab.map((item) => `- ${item.data.codename}: ${plain(pick(item.data.text))}`),
+    '',
     '## What I offer',
     '',
     ...offers.map((o) => `- ${plain(pick(o.data.title))}: ${plain(pick(o.data.text))}`),

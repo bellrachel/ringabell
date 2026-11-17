@@ -6,6 +6,16 @@ import { track } from './analytics';
 
 const form = document.querySelector<HTMLFormElement>('[data-contact-form]');
 
+// A link with data-form-topic (e.g. the lab CTA) preselects that topic. The
+// link still scrolls to #contact on its own, with or without JavaScript.
+document.addEventListener('click', (event) => {
+  const link = (event.target as Element).closest<HTMLElement>('[data-form-topic]');
+  const select = form?.querySelector<HTMLSelectElement>('select[name="topic"]');
+  const topic = link?.dataset.formTopic;
+  if (!select || !topic) return;
+  if ([...select.options].some((option) => option.value === topic)) select.value = topic;
+});
+
 if (form) {
   const success = form.querySelector<HTMLElement>('[data-form-success]');
   const error = form.querySelector<HTMLElement>('[data-form-error]');

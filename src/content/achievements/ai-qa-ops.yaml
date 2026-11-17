@@ -1,0 +1,8 @@
+title: AI-driven QA operations
+role: 4cast-pm
+summary: Built an AI workflow that turns product definitions into user journeys, so QA tests the experience as the PM defined it, not only technical correctness. Result, fewer fix tickets in the backlog and releases truer to the product vision.
+facts:
+  - id: journeys
+    value: AI user journeys
+    detail: Built an AI workflow that generates user journeys from product definitions in one click.
+tags: [qa, ai, product-ops]

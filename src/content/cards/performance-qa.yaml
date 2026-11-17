@@ -1,0 +1,11 @@
+order: 3
+title:
+  pro: Performance and QA, with the product vision built in
+  fire: QA that checks the experience, not just the code.
+text:
+  pro: "First, performance: mapped where the load peaks and defined performance tests for concurrent users, then fixed the bottlenecks with Engineering and DevOps. Next, QA: used AI to turn product definitions into user journeys in one click, so QA tests the experience, not just the code. Fewer fix tickets, releases truer to the vision."
+  fire: "Step one: find where the system chokes at rush hour and decide what \"fast\" actually means. Step two: AI writes the user journeys in one click, testers check what users actually feel, and the backlog stops filling up with \"that's not what I meant\"."
+chips:
+  - performance/load-time
+  - performance/concurrency
+  - ai-qa-ops/journeys

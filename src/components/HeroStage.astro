@@ -16,7 +16,7 @@ const photos = [
 
 <section class="stage-box" aria-label="Intro">
   <div class="stage">
-    <p class="wordmark display" aria-hidden="true">{site.wordmark}</p>
+    <h1 class="wordmark display">{site.wordmark}</h1>
 
     <div class="obj obj--bell"><Bell /></div>
     <div class="obj obj--star"><Star /></div>
@@ -26,9 +26,9 @@ const photos = [
       {
         photos.map((p) => (
           <picture data-show={p.mode}>
-            <source srcset={`/images/helly-${p.mode}-480.webp`} type="image/webp" />
+            <source srcset={`/images/rachel-${p.mode}-480.webp`} type="image/webp" />
             <img
-              src={`/images/helly-${p.mode}-480.jpg`}
+              src={`/images/rachel-${p.mode}-480.jpg`}
               alt={p.alt}
               width="480"
               height="721"
@@ -44,8 +44,9 @@ const photos = [
     <div class="obj obj--extra obj--cup"><Cup /></div>
 
     <div class="hero-copy">
-      <h1 class="display"><ModeText value={hero.heading} /></h1>
-      <p><ModeText value={hero.body} /></p>
+      <p class="mono eyebrow"><ModeText value={hero.eyebrow} /></p>
+      <h2 class="display tagline"><ModeText value={hero.heading} /></h2>
+      <p class="subline"><ModeText value={hero.body} /></p>
       <a class="cta" href="#contact"><ModeText value={hero.cta} /></a>
       <span class="mono caption"><ModeText value={hero.caption} /></span>
     </div>
@@ -64,7 +65,8 @@ const photos = [
     --u: min(1px, 0.078125cqw);
     position: relative;
     min-height: calc(660 * var(--u));
-    padding: calc(360 * var(--u)) 0 40px;
+    /* Bottom room keeps the cup below the photo and clear of the copy. */
+    padding: calc(360 * var(--u)) 0 100px;
   }
   .wordmark {
     position: absolute;
@@ -73,7 +75,8 @@ const photos = [
     top: calc(150 * var(--u));
     margin: 0;
     text-align: center;
-    font-size: calc(200 * var(--u));
+    text-transform: uppercase;
+    font-size: calc(180 * var(--u));
     line-height: 1;
     letter-spacing: -0.04em;
     white-space: nowrap;
@@ -141,9 +144,10 @@ const photos = [
     --r: 20deg;
   }
   .obj--cup {
-    /* Anchored to the bottom and kept clear of the CTA when the copy wraps. */
-    left: min(30%, calc(50% - 240px));
-    bottom: calc(50 * var(--u));
+    /* Anchored to the bottom, just left of the copy column (half of its
+       width is min(270px, 23cqw)), so it never covers the copy. */
+    left: calc(50% - min(270px, 23cqw) - 140 * var(--u));
+    bottom: calc(10 * var(--u));
     width: calc(110 * var(--u));
     height: calc(110 * var(--u));
     --r: -10deg;
@@ -159,13 +163,19 @@ const photos = [
     gap: 16px;
     text-align: center;
   }
-  h1 {
+  .tagline {
     margin: 0;
     font-size: 34px;
     line-height: 1.15;
   }
   .hero-copy p {
     margin: 0;
+  }
+  .eyebrow {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+  .subline {
     font-size: 17px;
     line-height: 1.6;
   }

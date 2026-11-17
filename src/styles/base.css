@@ -102,3 +102,41 @@ html[data-mode='fire'] [data-show='fire'] {
 .section .label {
   margin: 0 0 28px;
 }
+
+/* Cards: "What I build" and "In the lab" */
+.grid3 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 24px;
+  background: var(--white);
+  border: var(--border-card);
+  border-radius: var(--radius-card);
+}
+.card h3 {
+  margin: 0;
+  font-size: 26px;
+  line-height: 1.15;
+}
+.card p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.6;
+}
+.chip {
+  padding: 6px 10px;
+  border-radius: var(--radius-pill);
+  background: var(--chip);
+  font: 500 12px var(--font-mono);
+  text-transform: uppercase;
+}
+@media (max-width: 999px) {
+  .grid3 {
+    grid-template-columns: 1fr;
+  }
+}

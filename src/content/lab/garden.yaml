@@ -1,0 +1,8 @@
+order: 1
+codename: Project Garden
+# Only the public teaser. Product details stay private.
+text:
+  pro: Curated content and personal insights. Growing slowly, on purpose.
+  fire: I read the internet so you don't have to. Then I tell you what I think about it.
+# Abstract shapes drawn under the blur (no text): feed, board, or table.
+preview: feed

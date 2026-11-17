@@ -66,10 +66,28 @@ const sections = defineCollection({
   schema: z.object({
     enabled: z.boolean().default(true),
     label: variant.optional(),
+    eyebrow: variant.optional(),
     heading: variant.optional(),
     body: variant.optional(),
+    /** Longer copy with a different number of paragraphs per voice. */
+    paragraphs: z.object({ pro: z.array(z.string()), fire: z.array(z.string()) }).optional(),
     cta: variant.optional(),
     caption: variant.optional(),
+    stamp: variant.optional(),
+    status: variant.optional(),
+    /** A contact-form topic the section's CTA preselects. */
+    formTopic: z.string().optional(),
+  }),
+});
+
+/** Products in the lab: public teasers only. */
+const lab = defineCollection({
+  loader: yamlDir('lab'),
+  schema: z.object({
+    order: z.number(),
+    codename: z.string(),
+    text: variant,
+    preview: z.enum(['feed', 'board', 'table']),
   }),
 });
 
@@ -84,6 +102,8 @@ const site = defineCollection({
     knowsAbout: z.array(z.string()),
     linkedin: z.string().url(),
     calendlyUrl: z.string().url(),
+    /** Career-level numbers (not tied to one achievement), copied exactly from the source of truth. */
+    facts: z.array(z.object({ id: z.string(), value: z.string(), detail: z.string() })).default([]),
     nav: z.array(z.object({ label: variant, href: z.string() })),
     toggle: z.object({ groupLabel: z.string(), pro: z.string(), fire: z.string() }),
     photoAlt: z.object({ pro: z.string(), fire: z.string() }),
@@ -124,4 +144,4 @@ const microcopy = defineCollection({
   }),
 });
 
-export const collections = { roles, achievements, cards, offers, sections, site, microcopy };
+export const collections = { roles, achievements, cards, offers, sections, lab, site, microcopy };

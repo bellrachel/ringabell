@@ -1,0 +1,15 @@
+label:
+  pro: IN THE LAB
+  fire: CLASSIFIED. MOSTLY.
+# Stamp over each blurred preview, and the status chip under each card.
+stamp:
+  pro: COMING SOON
+  fire: TOP SECRET-ISH
+status:
+  pro: IN PROGRESS
+  fire: TO BE CONTINUED…
+cta:
+  pro: Ring me when it's ready →
+  fire: Let me in early →
+# The contact-form topic the CTA preselects. Must match one of microcopy.form.topics.
+formTopic: Early access

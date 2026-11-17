@@ -1,0 +1,219 @@
+---
+// "In the lab": products in progress, shown as blurred abstract previews with
+// public teasers only. The blur eases on hover/focus in On Fire (motion.css).
+import { getCollection, getEntry } from 'astro:content';
+import ModeText from './ModeText.astro';
+
+const section = (await getEntry('sections', 'lab'))!.data;
+const items = (await getCollection('lab')).sort((a, b) => a.data.order - b.data.order);
+const topics = (await getEntry('microcopy', 'microcopy'))!.data.form.topics;
+if (section.formTopic && !topics.includes(section.formTopic))
+  throw new Error(`sections/lab formTopic "${section.formTopic}" is not a contact-form topic`);
+---
+
+<section id="lab" class="section" aria-labelledby="lab-label">
+  <div class="wrap">
+    <h2 id="lab-label" class="label mono"><ModeText value={section.label} /></h2>
+    <div class="grid3">
+      {
+        items.map((item) => (
+          <article class="card lab-card" tabindex="0" aria-labelledby={`lab-${item.id}`}>
+            <div class="lab-preview">
+              <div class={`lab-art lab-art--${item.data.preview}`} aria-hidden="true">
+                {item.data.preview === 'feed' && (
+                  <>
+                    <i class="frame" />
+                    <i class="dot" />
+                    <i class="bar bar--1" />
+                    <i class="bar bar--2" />
+                    <i class="block" />
+                  </>
+                )}
+                {item.data.preview === 'board' && (
+                  <>
+                    <i class="col col--1" />
+                    <i class="col col--2" />
+                    <i class="col col--3" />
+                    <i class="dot dot--1" />
+                    <i class="dot dot--2" />
+                    <i class="dot dot--3" />
+                  </>
+                )}
+                {item.data.preview === 'table' && (
+                  <>
+                    <i class="row row--1" />
+                    <i class="row row--2" />
+                    <i class="row row--3" />
+                    <i class="dot" />
+                  </>
+                )}
+              </div>
+              <span class="stamp mono">
+                <ModeText value={section.stamp} />
+              </span>
+            </div>
+            <h3 id={`lab-${item.id}`} class="display">
+              {item.data.codename}
+            </h3>
+            <p>
+              <ModeText value={item.data.text} />
+            </p>
+            <span class="status mono">
+              <ModeText value={section.status} />
+            </span>
+          </article>
+        ))
+      }
+    </div>
+    <a class="cta lab-cta" href="#contact" data-form-topic={section.formTopic}>
+      <ModeText value={section.cta} />
+    </a>
+  </div>
+</section>
+
+<style>
+  .lab-preview {
+    position: relative;
+    height: 150px;
+    border-radius: var(--radius-field);
+    background: var(--chip);
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+  }
+  .lab-art {
+    position: absolute;
+    inset: 0;
+    filter: blur(10px);
+  }
+  .lab-art i {
+    position: absolute;
+    display: block;
+  }
+
+  /* feed: a frame with an avatar, two text bars and a picture block */
+  .lab-art--feed .frame {
+    inset: 18px 30px;
+    background: var(--white);
+    border-radius: 16px;
+  }
+  .lab-art--feed .dot {
+    left: 46px;
+    top: 32px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--brand);
+  }
+  .lab-art--feed .bar {
+    left: 92px;
+    height: 12px;
+    border-radius: 6px;
+    background: var(--teal);
+  }
+  .lab-art--feed .bar--1 {
+    top: 36px;
+    width: 40%;
+  }
+  .lab-art--feed .bar--2 {
+    top: 56px;
+    width: 26%;
+    background: var(--orange);
+  }
+  .lab-art--feed .block {
+    left: 46px;
+    right: 46px;
+    top: 82px;
+    height: 40px;
+    border-radius: 10px;
+    background: var(--link);
+  }
+
+  /* board: three columns of shared notes */
+  .lab-art--board .col {
+    top: 20px;
+    bottom: 20px;
+    width: 26%;
+    background: var(--white);
+    border-radius: 12px;
+  }
+  .lab-art--board .col--1 {
+    left: 8%;
+  }
+  .lab-art--board .col--2 {
+    left: 37%;
+  }
+  .lab-art--board .col--3 {
+    left: 66%;
+  }
+  .lab-art--board .dot {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+  }
+  .lab-art--board .dot--1 {
+    left: 14%;
+    top: 34px;
+    background: var(--brand);
+  }
+  .lab-art--board .dot--2 {
+    left: 43%;
+    top: 70px;
+    background: var(--teal);
+  }
+  .lab-art--board .dot--3 {
+    left: 72%;
+    top: 50px;
+    background: var(--orange);
+  }
+
+  /* table: price rows with one highlighted best option */
+  .lab-art--table .row {
+    left: 24px;
+    right: 24px;
+    height: 26px;
+    border-radius: 8px;
+    background: var(--white);
+  }
+  .lab-art--table .row--1 {
+    top: 24px;
+  }
+  .lab-art--table .row--2 {
+    top: 62px;
+    background: var(--teal);
+  }
+  .lab-art--table .row--3 {
+    top: 100px;
+  }
+  .lab-art--table .dot {
+    right: 40px;
+    top: 58px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--brand);
+  }
+
+  .stamp {
+    position: relative;
+    transform: rotate(-6deg);
+    padding: 6px 12px;
+    background: var(--white);
+    border: var(--border-cta);
+    color: var(--ink);
+    font-size: 13px;
+    white-space: nowrap;
+  }
+  .status {
+    align-self: flex-start;
+    margin-top: auto;
+    padding: 5px 10px;
+    border: 1.5px dashed var(--ink);
+    border-radius: var(--radius-pill);
+    font-size: 12px;
+    text-transform: uppercase;
+  }
+  .lab-cta {
+    margin-top: 32px;
+  }
+</style>

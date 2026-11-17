@@ -1,20 +1,36 @@
-name: Helly Rachel Bell
+name: Rachel Bell
 jobTitle: Senior Product Manager
-nameTag: HELLY RACHEL BELL · SENIOR PM
-wordmark: RING A BELL
+nameTag: RING A BELL · PRODUCT BUILDER
+wordmark: Rachel Bell
 meta:
-  title: Helly Rachel Bell · Senior Product Manager for EdTech and Workforce Management
-  description: Senior Product Manager specializing in EdTech and Workforce Management. I turn complex learning and workforce processes into products people actually use, and I build with AI along the way.
+  title: Rachel Bell · Senior Product Manager · B2B SaaS, AI, Product Ops
+  description: Rachel Bell, Senior Product Manager. I build B2B products that make complex work simple, turning messy enterprise workflows in learning, workforce, and operations into products people actually use.
 knowsAbout:
   - Product Management
+  - B2B SaaS
+  - Product operations
+  - AI agents and RAG
   - EdTech
   - Workforce Management
   - Digital learning
-  - AI agents and RAG
-  - Product operations
 linkedin: https://www.linkedin.com/in/helly-rachel-bell
 calendlyUrl: https://calendly.com/b-rachelbell/30min
+# Career-level numbers that are not tied to one achievement. Copied exactly
+# from the owner's source of truth. Section copy may only cite numbers found
+# here or in achievements/*.yaml (checked by `npm run check:facts`).
+facts:
+  - id: years-total
+    value: "8+"
+    detail: 8+ years in total since 2017, including L&D and e-commerce.
+  - id: years-pm
+    value: five
+    detail: Product Manager for five years (Dec 2020 to Aug 2026).
+  - id: symbol-cost
+    value: "$500"
+    detail: The design lesson that every symbol on a screen costs $500.
 nav:
+  - label: ABOUT
+    href: "#about"
   - label: WORK
     href: "#work"
   - label: OFFER
@@ -26,5 +42,5 @@ toggle:
   pro: PRO
   fire: ON FIRE
 photoAlt:
-  pro: Helly Rachel Bell smiling, portrait
-  fire: Helly Rachel Bell laughing, portrait
+  pro: Rachel Bell smiling, portrait
+  fire: Rachel Bell laughing, portrait

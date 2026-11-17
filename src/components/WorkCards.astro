@@ -43,30 +43,7 @@ function fact(ref: string) {
 </section>
 
 <style>
-  .grid3 {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 24px;
-  }
-  .card {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    padding: 24px;
-    background: var(--white);
-    border: var(--border-card);
-    border-radius: var(--radius-card);
-  }
-  h3 {
-    margin: 0;
-    font-size: 26px;
-    line-height: 1.15;
-  }
-  .card p {
-    margin: 0;
-    font-size: 15px;
-    line-height: 1.6;
-  }
+  /* Card, grid and chip styles are shared with the lab (src/styles/base.css). */
   .chips {
     display: flex;
     flex-wrap: wrap;
@@ -74,17 +51,5 @@ function fact(ref: string) {
     margin: auto 0 0;
     padding: 0;
     list-style: none;
-  }
-  .chip {
-    padding: 6px 10px;
-    border-radius: var(--radius-pill);
-    background: var(--chip);
-    font: 500 12px var(--font-mono);
-    text-transform: uppercase;
-  }
-  @media (max-width: 999px) {
-    .grid3 {
-      grid-template-columns: 1fr;
-    }
   }
 </style>

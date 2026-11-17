@@ -1,0 +1,8 @@
+order: 3
+codename: Project Mise
+# Only the public teaser. Product details stay private.
+text:
+  pro: For restaurants that buy every day, and want to buy smarter.
+  fire: Tomatoes cost what today? Compare every supplier before you order, not after the invoice.
+# Abstract shapes drawn under the blur (no text): feed, board, or table.
+preview: table

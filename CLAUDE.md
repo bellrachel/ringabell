@@ -18,8 +18,11 @@ Public repo for ringabell.co.il: an Astro static site on Netlify.
 - All copy lives in `src/content/`. Components contain no strings.
 - A copy field is a string (same in both modes) or `{ pro, fire }`.
   `==text==` renders as a yellow highlight.
-- Numbers live only in `achievements/*.yaml` under `facts`. Cards show
-  them as chips by reference (`achievement-id/fact-id`).
+- Numbers live only in `achievements/*.yaml` under `facts`, or for
+  career-level numbers in `site.yaml` under `facts`. Cards show them as
+  chips by reference (`achievement-id/fact-id`); other copy may only cite
+  a number that exists in a fact.
+- Lab products (`src/content/lab/`) show public teasers only.
 - Humor targets situations and clichés, never people or employers.
 
 ## Modes

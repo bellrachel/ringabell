@@ -1,0 +1,14 @@
+title: L&D delivery
+role: 4cast-lnd
+specializations: [edtech]
+summary: Ran technical learning projects and produced the training content behind them, including AI multimedia tools to scale content creation.
+facts:
+  - id: projects
+    value: "50+"
+    label: technical projects
+    detail: Managed 50+ concurrent technical projects, turning raw data into accessible knowledge assets.
+  - id: content
+    value: "100+"
+    label: videos and training modules
+    detail: Directed end-to-end production of 100+ instructional videos and interactive training modules.
+tags: [learning-and-development, content]

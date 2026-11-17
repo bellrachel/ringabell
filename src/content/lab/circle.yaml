@@ -1,0 +1,8 @@
+order: 2
+codename: Project Circle
+# Only the public teaser. Product details stay private.
+text:
+  pro: One shared space for everyone in the circle of care.
+  fire: Speech therapist, OT, psychologist, and parents. Same kid, same goals, finally the same page.
+# Abstract shapes drawn under the blur (no text): feed, board, or table.
+preview: board

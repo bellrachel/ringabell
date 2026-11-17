@@ -44,7 +44,7 @@ const jsonLd = {
       jobTitle: site.jobTitle,
       description: site.meta.description,
       url: origin.href,
-      image: new URL('/images/helly-pro.jpg', origin).href,
+      image: new URL('/images/rachel-pro.jpg', origin).href,
       sameAs: [site.linkedin],
       knowsAbout: site.knowsAbout,
       ...(current && { worksFor: { '@type': 'Organization', name: current.data.company } }),

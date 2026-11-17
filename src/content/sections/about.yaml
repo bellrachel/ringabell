@@ -1,3 +1,17 @@
-# Not part of v1. Set `enabled: true` and add a `body` once it is designed.
-enabled: false
 label: ABOUT
+heading:
+  pro: About
+  fire: The short version
+# The first paragraph is shown as a larger lead.
+paragraphs:
+  pro:
+    - "I'm Rachel, a Senior Product Manager who likes the hard part: messy enterprise workflows that nobody wants to touch."
+    - In my degree, the late Miki Ronen, head of the department, taught me that every symbol on a screen costs $500. Empty space isn't an invitation to fill it. I still design that way.
+    - I started in e-commerce, optimizing funnels and catalogs. Then I moved into learning and development, running 50+ technical projects and producing 100+ training modules. For five years I was a Product Manager in B2B SaaS, building workforce and learning products from zero to one and bringing AI into how teams actually work.
+    - "What ties it together: I map how people really work, find where it breaks, and turn it into something simple."
+    - Today I'm looking for my next Senior PM role, and meanwhile building products and consulting as a fractional PM through Ring a Bell.
+  fire:
+    - I'm Rachel. My favorite words at work are "it's complicated."
+    - In my degree, the late Miki Ronen, head of the department, taught me that every symbol on a screen costs $500. So no, that empty space doesn't need another button. E-commerce taught me that every click costs money. L&D taught me that nobody reads the manual, so I built 100+ videos instead. Five years of B2B SaaS taught me that the best feature is the one people don't need training for.
+    - Now I build with AI, consult as a fractional PM, and look for my next full-time home. I was born a redhead. The color changed, but the temperament and the total inability to sit still stayed.
+    - "Off the clock: live gigs, good music, and learning something new every week."

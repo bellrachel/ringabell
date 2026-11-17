@@ -4,7 +4,7 @@ summary: Worked with Engineering and DevOps to fix database bottlenecks, add cac
 facts:
   - id: load-time
     value: "4.5s → <1.2s"
-    label: dashboard load
+    label: load time
     detail: Reduced average dashboard loading time from 4.5s to under 1.2s.
   - id: uptime
     value: "99.7%"

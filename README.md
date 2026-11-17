@@ -1,6 +1,6 @@
 # Ring a Bell
 
-Source for [ringabell.co.il](https://ringabell.co.il), the personal site of Helly Rachel Bell, Senior Product Manager specializing in EdTech and Workforce Management.
+Source for [ringabell.co.il](https://ringabell.co.il), the personal site of Rachel Bell, Senior Product Manager for B2B SaaS, AI, and Product Ops.
 
 The site has two modes with identical facts: **Pro** (default) and **On Fire** (same facts, more playful wording). Add `?mode=fire` to a link to open it in On Fire.
 

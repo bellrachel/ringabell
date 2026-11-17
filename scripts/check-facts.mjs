@@ -2,7 +2,8 @@
 // a fact, so numbers can never drift between the two modes.
 //
 // - Card copy may only use numbers found in the facts its chips point to.
-// - All other copy may only use the few non-achievement numbers listed below.
+// - All other copy may only use numbers found in a fact (achievements, or the
+//   career-level facts in site.yaml), plus the few utility numbers below.
 // Numbers written as words ("six months") are not checked; review those by eye.
 
 import { readFileSync, readdirSync } from 'node:fs';
@@ -19,7 +20,8 @@ const load = (dir) =>
       .filter((file) => file.endsWith('.yaml'))
       .map((file) => [basename(file, '.yaml'), parse(readFileSync(join(CONTENT, dir, file), 'utf8'))]),
   );
-const numbers = (text) => String(text).match(/\d[\d,.]*\d|\d/g) ?? [];
+/** Numbers in a string, skipping digits inside words such as "B2B". */
+const numbers = (text) => String(text).match(/(?<![A-Za-z])(?:\d[\d,.]*\d|\d)/g) ?? [];
 /** Every string inside a value, with the path that leads to it. */
 function* strings(value, path = '') {
   if (typeof value === 'string') yield [path, value];
@@ -47,16 +49,25 @@ for (const [id, card] of Object.entries(cards)) {
       if (!backed.has(n)) errors.push(`cards/${id} ${path}: "${n}" is not in the facts this card's chips reference`);
 }
 
+const { facts: siteFacts = [], linkedin, calendlyUrl, ...siteCopy } = parse(
+  readFileSync(join(CONTENT, 'site.yaml'), 'utf8'),
+);
+const backedAnywhere = new Set(ALLOWED_ELSEWHERE);
+for (const fact of [...Object.values(achievements).flatMap((a) => a.facts ?? []), ...siteFacts])
+  numbers(fact.value).forEach((n) => backedAnywhere.add(n));
+
 const elsewhere = {
   ...Object.fromEntries(Object.entries(load('offers')).map(([id, v]) => [`offers/${id}`, v])),
   ...Object.fromEntries(Object.entries(load('sections')).map(([id, v]) => [`sections/${id}`, v])),
+  ...Object.fromEntries(Object.entries(load('lab')).map(([id, v]) => [`lab/${id}`, v])),
   microcopy: parse(readFileSync(join(CONTENT, 'microcopy.yaml'), 'utf8')),
+  site: siteCopy,
 };
 for (const [file, data] of Object.entries(elsewhere))
   for (const [path, text] of strings(data))
     for (const n of numbers(text))
-      if (!ALLOWED_ELSEWHERE.has(n))
-        errors.push(`${file} ${path}: "${n}" is a number outside a card. Put achievement numbers in a card chip.`);
+      if (!backedAnywhere.has(n))
+        errors.push(`${file} ${path}: "${n}" is not in any fact. Add it to achievements/*.yaml or site.yaml facts first.`);
 
 if (errors.length) {
   console.error(`Fact check failed (${errors.length}):\n` + errors.map((e) => `  - ${e}`).join('\n'));

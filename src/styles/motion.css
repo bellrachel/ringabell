@@ -62,6 +62,15 @@
     animation: swing 1.6s ease-in-out infinite;
     transform-origin: 50% 8%;
   }
+
+  /* In the lab: a peek through the blur on hover or keyboard focus. */
+  html[data-mode='fire'] .lab-art {
+    transition: filter 0.5s ease;
+  }
+  html[data-mode='fire'] .lab-card:hover .lab-art,
+  html[data-mode='fire'] .lab-card:focus-visible .lab-art {
+    filter: blur(6px);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
