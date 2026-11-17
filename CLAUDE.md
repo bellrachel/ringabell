@@ -42,7 +42,8 @@ Public repo for ringabell.co.il: an Astro static site on Netlify.
 - The contact form uses Netlify Forms; the notification address is set in
   the Netlify dashboard only.
 - Analytics go through `track()` in `src/scripts/analytics.ts`. The
-  provider is enabled with the `PUBLIC_PLAUSIBLE_DOMAIN` env variable.
+  provider is Umami Cloud, enabled with the `PUBLIC_UMAMI_WEBSITE_ID` env
+  variable and counted only on the production domain.
 
 ## Commands
 - `npm run dev`, `npm run build`, `npm run check:facts`, `npm run preview`
